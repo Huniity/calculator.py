@@ -1,4 +1,6 @@
-# Simple Calculator App
+import math
+
+# Simple Calculator App with Square Root feature
 
 def add(x, y):
     return x + y
@@ -15,6 +17,12 @@ def divide(x, y):
     else:
         return x / y
 
+def square_root(x):
+    if x < 0:
+        return "Error! Cannot take the square root of a negative number."
+    else:
+        return math.sqrt(x)
+
 def calculator():
     print("Welcome to the Python Calculator!")
     print("Select operation:")
@@ -22,9 +30,10 @@ def calculator():
     print("2. Subtract")
     print("3. Multiply")
     print("4. Divide")
+    print("5. Square Root")
 
     while True:
-        choice = input("Enter choice (1/2/3/4): ")
+        choice = input("Enter choice (1/2/3/4/5): ")
 
         if choice in ['1', '2', '3', '4']:
             try:
@@ -42,9 +51,17 @@ def calculator():
                 print(f"{num1} * {num2} = {multiply(num1, num2)}")
             elif choice == '4':
                 print(f"{num1} / {num2} = {divide(num1, num2)}")
+        
+        elif choice == '5':
+            try:
+                num = float(input("Enter the number to find the square root of: "))
+                print(f"Square root of {num} = {square_root(num)}")
+            except ValueError:
+                print("Invalid input! Please enter a numerical value.")
+
         else:
             print("Invalid input! Please select a valid operation.")
-
+        
         next_calculation = input("Do you want to perform another calculation? (yes/no): ").lower()
         if next_calculation != 'yes':
             print("Thank you for using the calculator!")
